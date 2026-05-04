@@ -459,8 +459,9 @@ let searchResults = [], searchFilter = 'all';
 let searchTimer = null, lastQ = '';
 
 window.addEventListener('DOMContentLoaded', () => {
-  const k = localStorage.getItem('ajm_key') || 'eae6c7abc10cc13ebf35a312ba42c8bb';
-  KEY = k; localStorage.setItem('ajm_key', k);
+  // Always use the built-in key — works on any device/browser without prior setup
+  KEY = 'eae6c7abc10cc13ebf35a312ba42c8bb';
+  localStorage.setItem('ajm_key', KEY);
   setTimeout(() => {
     const splash = document.getElementById('welcome-splash');
     if (splash) { splash.style.opacity='0'; splash.style.pointerEvents='none'; setTimeout(()=>splash.style.display='none',500); }
@@ -481,17 +482,20 @@ async function validateKey() {
 }
 
 async function tmdb(path, params = {}) {
-  const q = new URLSearchParams({ api_key: KEY, ...params });
-  const r = await fetch(`https://api.themoviedb.org/3${path}?${q}`);
-  return r.json();
+  const q = new URLSearchParams({ api_key: KEY, language: 'en-US', ...params });
+  try {
+    const r = await fetch(`https://api.themoviedb.org/3${path}?${q}`);
+    if (!r.ok) { console.warn('TMDB error', r.status, path); return {}; }
+    return r.json();
+  } catch(e) { console.warn('TMDB fetch failed', path, e); return {}; }
 }
 
 async function init() {
   updateWLBadge();
   const [mg, tg] = await Promise.all([tmdb('/genre/movie/list'), tmdb('/genre/tv/list')]);
   movieGenres = mg.genres || []; tvGenres = tg.genres || [];
-  buildGenreTabs('gtabs-movies', movieGenres, 'movie');
-  buildGenreTabs('gtabs-tv', tvGenres, 'tv');
+  if (movieGenres.length) buildGenreTabs('gtabs-movies', movieGenres, 'movie');
+  if (tvGenres.length) buildGenreTabs('gtabs-tv', tvGenres, 'tv');
   loadHome();
 }
 
@@ -501,13 +505,12 @@ async function loadHome() {
     tmdb('/tv/popular'), tmdb('/movie/now_playing'),
     tmdb('/discover/movie', {with_original_language:'hi', sort_by:'popularity.desc'})
   ]);
-  buildHero(trending.results.slice(0, 6));
-  fillRow('row-trending', trending.results, 'movie');
-  fillRow('row-popular', popular.results, 'movie');
-  fillRow('row-toprated', topRated.results, 'movie');
-  fillRow('row-tv', tv.results, 'tv');
-  fillRow('row-nowplaying', nowPlaying.results, 'movie');
-  fillRow('row-bollywood', bollywood.results, 'movie');
+  if (trending.results?.length) { buildHero(trending.results.slice(0, 6)); fillRow('row-trending', trending.results, 'movie'); }
+  if (popular.results?.length) fillRow('row-popular', popular.results, 'movie');
+  if (topRated.results?.length) fillRow('row-toprated', topRated.results, 'movie');
+  if (tv.results?.length) fillRow('row-tv', tv.results, 'tv');
+  if (nowPlaying.results?.length) fillRow('row-nowplaying', nowPlaying.results, 'movie');
+  if (bollywood.results?.length) fillRow('row-bollywood', bollywood.results, 'movie');
 }
 
 function buildHero(items) {
@@ -848,7 +851,7 @@ function playServer(idx) {
         src="${s.url}"
         allowfullscreen="true"
         allow="autoplay; fullscreen; picture-in-picture; encrypted-media; accelerometer; gyroscope"
-        frameborder="0" scrolling="no" referrerpolicy="no-referrer"
+        frameborder="0" scrolling="no" referrerpolicy="no-referrer" crossorigin="anonymous"
         style="width:100%;height:100%;border:none;display:block;background:#000"></iframe>
       <div id="player-btns" style="position:absolute;top:10px;right:12px;display:flex;gap:8px;z-index:10">
         <button onclick="tryNextServer()" style="background:rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.18);color:#fff;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;backdrop-filter:blur(10px);font-family:'Outfit',sans-serif" title="Try next server">⟳ Next</button>
