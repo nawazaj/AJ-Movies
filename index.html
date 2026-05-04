@@ -311,17 +311,131 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 .hero-content{animation:heroContentIn .7s cubic-bezier(.23,1,.32,1) both}
 
 @media(max-width:900px){
-  #nav{padding:0 18px}.nav-links{display:none}.hero{height:75vh}.hero-content{padding:0 20px 48px}.hero-title{font-size:34px;letter-spacing:-.8px}
-  .section,.page-header,.filter-row{padding-left:18px;padding-right:18px}.gtabs{padding-left:18px}
-  .welcome-banner{margin:20px 18px 36px;padding:18px 20px;flex-direction:column;gap:14px}
-  .detail-wrap{padding:0 18px 44px;margin-top:-200px}.detail-top{flex-direction:column;gap:20px;align-items:flex-start}
-  .detail-poster{width:130px;height:195px}.detail-info .det-title{font-size:30px;letter-spacing:-.8px}
-  .player-box{margin:0 18px 28px}.player-frame,.player-ph{height:240px}
-  .cast-row,.cast-section-head{padding-left:18px;padding-right:18px}
-  .info-grid{grid-template-columns:1fr;margin:0 18px 28px}
-  .footer-grid{grid-template-columns:1fr 1fr;gap:24px}footer{padding:36px 22px 24px}.hero-dots{right:20px}
-  .card{width:148px}.grid{grid-template-columns:repeat(auto-fill,minmax(148px,1fr))}
+  /* ── NAV ── */
+  #nav{padding:0 16px;height:56px}
+  .nav-links{display:none}
+  .nav-right{gap:8px}
+  #nav-search{width:140px;font-size:12px;padding:8px 10px 8px 32px}
+  #nav-search:focus{width:160px}
+  .nav-wl-btn{padding:7px 12px;font-size:12px}
+  .search-icon-nav{font-size:12px;left:10px}
+
+  /* ── BOTTOM NAV ── */
+  #bottom-nav{display:flex}
+
+  /* ── APP PADDING for bottom nav ── */
+  #app{padding-bottom:64px}
+  footer{padding-bottom:80px}
+
+  /* ── HERO ── */
+  .hero{height:68vh;min-height:420px}
+  .hero-content{padding:0 16px 36px}
+  .hero-title{font-size:26px;letter-spacing:-.5px;margin-bottom:10px}
+  .hero-overview{font-size:13px;-webkit-line-clamp:2;margin-bottom:20px}
+  .hero-meta{gap:8px;margin-bottom:10px}
+  .hero-meta span{font-size:12px}
+  .hero-meta .hscore{font-size:13px}
+  .badge-row{gap:6px;margin-bottom:12px}
+  .badge{font-size:9px;padding:3px 9px}
+  .btn-primary{padding:11px 20px;font-size:13px;border-radius:12px}
+  .btn-secondary{padding:11px 16px;font-size:13px;border-radius:12px}
+  .btn-icon{padding:11px 12px;font-size:15px;border-radius:12px}
+  .hero-btns{gap:8px}
+  .hero-dots{right:16px;bottom:24px}
+
+  /* ── SECTIONS ── */
+  .section{padding:0 14px;margin-bottom:36px}
+  .page-header{padding:28px 14px 16px}
+  .page-header h1{font-size:24px}
+  .filter-row{padding:0 14px;gap:6px}
+  .filt{padding:7px 14px;font-size:12px}
+  .gtabs{padding:0 14px 4px;gap:6px}
+  .gtab{padding:7px 14px;font-size:12px}
+  .sec-title{font-size:16px}
+  .sec-more{font-size:12px;padding:5px 12px}
+
+  /* ── CARDS ── */
+  .card{width:130px}
+  .grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
+  .card-body{padding:8px 10px 10px}
+  .card-title{font-size:12px}
+  .card-year{font-size:10.5px}
+
+  /* ── WELCOME BANNER ── */
+  .welcome-banner{margin:14px 14px 28px;padding:16px;flex-direction:row;gap:12px;border-radius:14px}
+  .wb-icon{font-size:26px}
+  .wb-text h2{font-size:13px}
+  .wb-text p{font-size:11.5px;line-height:1.6}
+
+  /* ── DETAIL PAGE ── */
+  .backdrop-wrap{height:320px}
+  .detail-wrap{padding:0 14px 36px;margin-top:-140px}
+  .detail-top{flex-direction:row;gap:16px;align-items:flex-end;margin-bottom:28px}
+  .detail-poster{width:100px;height:150px;border-radius:12px}
+  .detail-info .det-title{font-size:22px;letter-spacing:-.5px;margin-bottom:8px}
+  .det-meta{gap:8px;margin-bottom:10px;flex-wrap:wrap}
+  .det-meta span{font-size:12px}
+  .det-meta .dscore{font-size:15px}
+  .genre-tags{gap:6px;margin-bottom:12px}
+  .gtag{font-size:11px;padding:4px 10px}
+  .det-overview{font-size:13px;line-height:1.7;margin-bottom:20px}
+
+  /* ── SEASON/EPISODE PICKER ── */
+  .se-picker{margin:0 14px 16px;padding:14px 16px;border-radius:12px}
+  .se-picker-row{flex-direction:column;align-items:flex-start;gap:10px}
+  .se-label{font-size:10px}
+  .se-select{font-size:13px;padding:8px 12px;min-width:0;flex:1}
+  .se-play-btn{width:100%;justify-content:center;padding:11px}
+  .se-picker-row > div{width:100%}
+  .se-ep-info{font-size:11.5px}
+
+  /* ── PLAYER ── */
+  .player-box{margin:0 14px 24px;border-radius:14px}
+  .player-frame,.player-ph{height:210px}
+  .player-header-bar{padding:12px 16px}
+  .server-note{font-size:11px;padding:8px 16px}
+  .ptab{padding:11px 14px;font-size:11.5px}
+  .pp-btn{width:60px;height:60px}
+  .pp-btn svg{width:20px;height:20px}
+  .pp-title{font-size:16px;padding:0 24px}
+  .pp-label{font-size:10px}
+
+  /* ── CAST ── */
+  .cast-section-head{padding:0 14px 12px}
+  .cast-row{padding:0 14px 10px;gap:12px;margin-bottom:28px}
+  .cast-card{width:72px}
+  .cast-av{width:56px;height:56px}
+  .cast-name{font-size:10px}
+  .cast-char{font-size:9px}
+
+  /* ── INFO GRID ── */
+  .info-grid{grid-template-columns:1fr;margin:0 14px 28px;gap:12px}
+  .info-block{padding:16px}
+  .ir{font-size:12.5px;padding:7px 0}
+
+  /* ── FOOTER ── */
+  .footer-grid{grid-template-columns:1fr 1fr;gap:20px}
+  footer{padding:32px 18px 20px}
+  .footer-bottom{flex-direction:column;gap:6px;text-align:center}
 }
+
+/* ── BOTTOM NAV (mobile only) ── */
+#bottom-nav{
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:500;
+  background:rgba(10,10,15,.97);backdrop-filter:blur(24px);
+  border-top:1px solid var(--border);
+  height:60px;align-items:stretch;justify-content:space-around;
+  padding:0 4px;
+}
+.bnav-item{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:3px;cursor:pointer;padding:6px 4px;border-radius:10px;transition:.2s;
+  color:var(--muted);border:none;background:none;font-family:'Outfit',sans-serif;
+}
+.bnav-item.active{color:var(--accent)}
+.bnav-item:active{background:rgba(255,255,255,.06)}
+.bnav-icon{font-size:18px;line-height:1}
+.bnav-label{font-size:9.5px;font-weight:600;letter-spacing:.3px;text-transform:uppercase}
 </style>
 </head>
 <body>
@@ -456,6 +570,24 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 </footer>
 
 <div class="toast" id="toast"></div>
+
+<div id="bottom-nav">
+  <button class="bnav-item active" id="bn-home" onclick="goPage('home');setBNav('home')">
+    <span class="bnav-icon">🏠</span><span class="bnav-label">Home</span>
+  </button>
+  <button class="bnav-item" id="bn-movies" onclick="goPage('movies');setBNav('movies')">
+    <span class="bnav-icon">🎬</span><span class="bnav-label">Movies</span>
+  </button>
+  <button class="bnav-item" id="bn-tv" onclick="goPage('tv');setBNav('tv')">
+    <span class="bnav-icon">📺</span><span class="bnav-label">TV</span>
+  </button>
+  <button class="bnav-item" id="bn-bollywood" onclick="goPage('bollywood');setBNav('bollywood')">
+    <span class="bnav-icon">🎭</span><span class="bnav-label">Bollywood</span>
+  </button>
+  <button class="bnav-item" id="bn-watchlist" onclick="goPage('watchlist');setBNav('watchlist')">
+    <span class="bnav-icon">♥</span><span class="bnav-label">Saved</span>
+  </button>
+</div>
 
 <script>
 const IMG = 'https://image.tmdb.org/t/p/';
@@ -744,36 +876,30 @@ function renderDetail(m, credits, similar, videos, type) {
     const s = season, e = episode, id = m.id;
     if (type === 'tv') {
       return [
-        // Cleanest — fewest ads, go here first
-        {label:'✦ VidLink',      url:`https://vidlink.pro/tv/${id}/${s}/${e}?primaryColor=00d4aa&secondaryColor=00b894&iconColor=00d4aa&autoplay=true`,  ok:true},
-        {label:'✦ EmbedSu',      url:`https://embed.su/embed/tv/${id}/${s}/${e}`,                                           ok:true},
-        {label:'✦ VidSrc.cc',    url:`https://vidsrc.cc/v2/embed/tv/${id}/${s}/${e}`,                                       ok:true},
-        {label:'VidSrc.fyi',     url:`https://vidsrc.fyi/embed/tv/${id}/${s}/${e}`,                                         ok:true},
-        {label:'VidSrc.me',      url:`https://vidsrc-embed.ru/embed/tv?tmdb=${id}&season=${s}&episode=${e}`,                ok:true},
-        // More ads — fallback only
-        {label:'MoviesAPI',      url:`https://moviesapi.club/tv/${id}-${s}-${e}`,                                           ok:false},
-        {label:'111Movies',      url:`https://111movies.com/tv/${id}?season=${s}&episode=${e}`,                             ok:false},
-        {label:'2Embed',         url:`https://www.2embed.cc/embedtv/${id}&s=${s}&e=${e}`,                                   ok:false},
-        {label:'SuperEmbed',     url:`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1&s=${s}&e=${e}`,         ok:false},
-        {label:'AutoEmbed',      url:`https://autoembed.co/embed/tv/${id}/${s}/${e}`,                                       ok:false},
-        {label:'SmashyStream',   url:`https://player.smashy.stream/tv?id=${id}&s=${s}&e=${e}`,                             ok:false},
+        {label:'MoviesAPI',    url:`https://moviesapi.club/tv/${id}-${s}-${e}`,                                         ok:true},
+        {label:'111Movies',    url:`https://111movies.com/tv/${id}?season=${s}&episode=${e}`,                            ok:true},
+        {label:'VidLink',      url:`https://vidlink.pro/tv/${id}/${s}/${e}`,                                             ok:true},
+        {label:'VidSrc.fyi',   url:`https://vidsrc.fyi/embed/tv/${id}/${s}/${e}`,                                       ok:true},
+        {label:'VidSrc.me',    url:`https://vidsrc-embed.ru/embed/tv?tmdb=${id}&season=${s}&episode=${e}`,              ok:true},
+        {label:'2Embed',       url:`https://www.2embed.cc/embedtv/${id}&s=${s}&e=${e}`,                                  ok:true},
+        {label:'SuperEmbed',   url:`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1&s=${s}&e=${e}`,        ok:true},
+        {label:'AutoEmbed',    url:`https://autoembed.co/embed/tv/${id}/${s}/${e}`,                                      ok:false},
+        {label:'EmbedSu',      url:`https://embed.su/embed/tv/${id}/${s}/${e}`,                                          ok:false},
+        {label:'SmashyStream', url:`https://player.smashy.stream/tv?id=${id}&s=${s}&e=${e}`,                            ok:false},
       ];
     } else {
       return [
-        // Cleanest — fewest ads, go here first
-        {label:'✦ VidLink',      url:`https://vidlink.pro/movie/${id}?primaryColor=00d4aa&secondaryColor=00b894&iconColor=00d4aa&autoplay=true`,         ok:true},
-        {label:'✦ EmbedSu',      url:`https://embed.su/embed/movie/${id}`,                                                  ok:true},
-        {label:'✦ VidSrc.cc',    url:`https://vidsrc.cc/v2/embed/movie/${id}`,                                              ok:true},
-        {label:'VidSrc.fyi',     url:`https://vidsrc.fyi/embed/movie/${id}`,                                               ok:true},
-        {label:'VidSrc.me',      url:`https://vidsrc-embed.ru/embed/movie?tmdb=${id}`,                                      ok:true},
-        // More ads — fallback only
-        {label:'MoviesAPI',      url:`https://moviesapi.club/movie/${id}`,                                                  ok:false},
-        {label:'111Movies',      url:`https://111movies.com/movie/${id}`,                                                   ok:false},
-        {label:'2Embed',         url:`https://www.2embed.cc/embed/${id}`,                                                   ok:false},
-        {label:'SuperEmbed',     url:`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`,                       ok:false},
-        {label:'VidFast',        url:`https://vidfast.pro/player.php?tmdb=${id}&type=movie`,                                ok:false},
-        {label:'AutoEmbed',      url:`https://autoembed.co/embed/movie/${id}`,                                              ok:false},
-        {label:'SmashyStream',   url:`https://player.smashy.stream/movie?id=${id}`,                                        ok:false},
+        {label:'MoviesAPI',    url:`https://moviesapi.club/movie/${id}`,                                                ok:true},
+        {label:'111Movies',    url:`https://111movies.com/movie/${id}`,                                                 ok:true},
+        {label:'VidLink',      url:`https://vidlink.pro/movie/${id}`,                                                   ok:true},
+        {label:'VidSrc.fyi',   url:`https://vidsrc.fyi/embed/movie/${id}`,                                             ok:true},
+        {label:'VidSrc.me',    url:`https://vidsrc-embed.ru/embed/movie?tmdb=${id}`,                                   ok:true},
+        {label:'2Embed',       url:`https://www.2embed.cc/embed/${id}`,                                                 ok:true},
+        {label:'SuperEmbed',   url:`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`,                     ok:true},
+        {label:'VidFast',      url:`https://vidfast.pro/player.php?tmdb=${id}&type=movie`,                              ok:false},
+        {label:'AutoEmbed',    url:`https://autoembed.co/embed/movie/${id}`,                                            ok:false},
+        {label:'EmbedSu',      url:`https://embed.su/embed/movie/${id}`,                                                ok:false},
+        {label:'SmashyStream', url:`https://player.smashy.stream/movie?id=${id}`,                                      ok:false},
       ];
     }
   }
@@ -846,7 +972,7 @@ function renderDetail(m, credits, similar, videos, type) {
     ${sePickerHTML}
     <div class="player-box">
       <div class="player-header-bar"><span class="player-header-title">Stream Player</span><span style="font-size:11px;color:var(--muted);letter-spacing:1px">${type==='tv'?'SELECT SEASON & EPISODE ABOVE':''}</span></div>
-      <div class="server-note">✦ <strong>VidLink · EmbedSu · VidSrc.cc</strong> are the cleanest (fewest ads) — try these first. If one fails, click the next tab.</div>
+      <div class="server-note">✅ <strong>MoviesAPI · 111Movies · VidLink · VidSrc.fyi · VidSrc.me · 2Embed · SuperEmbed</strong> confirmed working. If one fails, click the next tab.</div>
       <div class="player-tabs" id="ptabs">
         ${window._servers.map((s,i) => `<div class="ptab${i===0?' active':''}${s.ok?' working':''}" onclick="playServer(${i})">${s.ok?'✓ ':''}${s.label}</div>`).join('')}
       </div>
@@ -968,12 +1094,19 @@ function renderWL() {
   });
 }
 
+function setBNav(page) {
+  document.querySelectorAll('.bnav-item').forEach(b => b.classList.remove('active'));
+  const el = document.getElementById('bn-' + page);
+  if (el) el.classList.add('active');
+}
+
 function goPage(page, subtype, genreId) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const target = document.getElementById(`page-${page === 'detail' ? 'detail' : page === 'bollywood' ? 'bollywood' : page}`);
   if (target) target.classList.add('active');
   document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
   const nl = document.getElementById(`nl-${page}`); if (nl) nl.classList.add('active');
+  setBNav(page);
   window.scrollTo(0, 0);
   if (page === 'movies') loadMovies(subtype || 'popular', genreId || null, 1);
   else if (page === 'tv') loadTV(genreId || null, 1);
