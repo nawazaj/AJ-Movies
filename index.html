@@ -219,6 +219,13 @@ button{font-family:'Outfit',sans-serif;cursor:pointer}
 .ptab.working{color:var(--accent)}
 .ptab.working.active{border-bottom-color:var(--accent)}
 .player-frame{width:100%;height:520px;border:none;display:block;background:#000}
+#player-wrap:-webkit-full-screen{width:100vw;height:100vh}
+#player-wrap:-webkit-full-screen iframe{width:100%;height:100%}
+#player-wrap:fullscreen{width:100vw;height:100vh}
+#player-wrap:fullscreen iframe{width:100%;height:100%}
+#season-tabs::-webkit-scrollbar,#episode-tabs::-webkit-scrollbar{display:none}
+[id^="stab-"]:hover,[id^="etab-"]:hover{opacity:.85}
+.bw-gold .sec-title{color:var(--gold)}
 .player-ph{width:100%;height:520px;background:linear-gradient(135deg,#070710,#0d0d1f);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;cursor:pointer;position:relative;overflow:hidden}
 .player-ph::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(0,212,170,.06),transparent 60%)}
 .player-ph:hover .pp-btn{transform:scale(1.1)}
@@ -226,18 +233,6 @@ button{font-family:'Outfit',sans-serif;cursor:pointer}
 .pp-btn svg{width:28px;height:28px;fill:#000;margin-left:4px}
 .pp-label{color:rgba(255,255,255,.3);font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600}
 .pp-title{color:#fff;font-size:22px;font-weight:800;letter-spacing:-.5px;text-align:center;padding:0 48px}
-
-/* ── SEASON / EPISODE PICKER ── */
-.se-picker{margin:0 80px 24px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px 24px}
-.se-picker-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.se-label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:2px;text-transform:uppercase;white-space:nowrap}
-.se-select{background:rgba(255,255,255,.06);border:1px solid var(--border2);color:#fff;padding:9px 14px;border-radius:10px;font-size:13.5px;font-family:'Outfit',sans-serif;cursor:pointer;outline:none;transition:.2s;min-width:130px}
-.se-select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,212,170,.1)}
-.se-select option{background:#1a1a28;color:#fff}
-.se-play-btn{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#000;border:none;padding:9px 20px;border-radius:10px;font-size:13px;font-weight:700;font-family:'Outfit',sans-serif;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:7px;white-space:nowrap}
-.se-play-btn:hover{transform:translateY(-1px);box-shadow:0 8px 24px var(--accent-glow)}
-.se-ep-info{font-size:12px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px solid var(--border);line-height:1.6}
-.se-ep-info strong{color:var(--text)}
 
 /* ── CAST ── */
 .cast-section-head{padding:0 80px 18px;display:flex;align-items:center}
@@ -311,131 +306,17 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 .hero-content{animation:heroContentIn .7s cubic-bezier(.23,1,.32,1) both}
 
 @media(max-width:900px){
-  /* ── NAV ── */
-  #nav{padding:0 16px;height:56px}
-  .nav-links{display:none}
-  .nav-right{gap:8px}
-  #nav-search{width:140px;font-size:12px;padding:8px 10px 8px 32px}
-  #nav-search:focus{width:160px}
-  .nav-wl-btn{padding:7px 12px;font-size:12px}
-  .search-icon-nav{font-size:12px;left:10px}
-
-  /* ── BOTTOM NAV ── */
-  #bottom-nav{display:flex}
-
-  /* ── APP PADDING for bottom nav ── */
-  #app{padding-bottom:64px}
-  footer{padding-bottom:80px}
-
-  /* ── HERO ── */
-  .hero{height:68vh;min-height:420px}
-  .hero-content{padding:0 16px 36px}
-  .hero-title{font-size:26px;letter-spacing:-.5px;margin-bottom:10px}
-  .hero-overview{font-size:13px;-webkit-line-clamp:2;margin-bottom:20px}
-  .hero-meta{gap:8px;margin-bottom:10px}
-  .hero-meta span{font-size:12px}
-  .hero-meta .hscore{font-size:13px}
-  .badge-row{gap:6px;margin-bottom:12px}
-  .badge{font-size:9px;padding:3px 9px}
-  .btn-primary{padding:11px 20px;font-size:13px;border-radius:12px}
-  .btn-secondary{padding:11px 16px;font-size:13px;border-radius:12px}
-  .btn-icon{padding:11px 12px;font-size:15px;border-radius:12px}
-  .hero-btns{gap:8px}
-  .hero-dots{right:16px;bottom:24px}
-
-  /* ── SECTIONS ── */
-  .section{padding:0 14px;margin-bottom:36px}
-  .page-header{padding:28px 14px 16px}
-  .page-header h1{font-size:24px}
-  .filter-row{padding:0 14px;gap:6px}
-  .filt{padding:7px 14px;font-size:12px}
-  .gtabs{padding:0 14px 4px;gap:6px}
-  .gtab{padding:7px 14px;font-size:12px}
-  .sec-title{font-size:16px}
-  .sec-more{font-size:12px;padding:5px 12px}
-
-  /* ── CARDS ── */
-  .card{width:130px}
-  .grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
-  .card-body{padding:8px 10px 10px}
-  .card-title{font-size:12px}
-  .card-year{font-size:10.5px}
-
-  /* ── WELCOME BANNER ── */
-  .welcome-banner{margin:14px 14px 28px;padding:16px;flex-direction:row;gap:12px;border-radius:14px}
-  .wb-icon{font-size:26px}
-  .wb-text h2{font-size:13px}
-  .wb-text p{font-size:11.5px;line-height:1.6}
-
-  /* ── DETAIL PAGE ── */
-  .backdrop-wrap{height:320px}
-  .detail-wrap{padding:0 14px 36px;margin-top:-140px}
-  .detail-top{flex-direction:row;gap:16px;align-items:flex-end;margin-bottom:28px}
-  .detail-poster{width:100px;height:150px;border-radius:12px}
-  .detail-info .det-title{font-size:22px;letter-spacing:-.5px;margin-bottom:8px}
-  .det-meta{gap:8px;margin-bottom:10px;flex-wrap:wrap}
-  .det-meta span{font-size:12px}
-  .det-meta .dscore{font-size:15px}
-  .genre-tags{gap:6px;margin-bottom:12px}
-  .gtag{font-size:11px;padding:4px 10px}
-  .det-overview{font-size:13px;line-height:1.7;margin-bottom:20px}
-
-  /* ── SEASON/EPISODE PICKER ── */
-  .se-picker{margin:0 14px 16px;padding:14px 16px;border-radius:12px}
-  .se-picker-row{flex-direction:column;align-items:flex-start;gap:10px}
-  .se-label{font-size:10px}
-  .se-select{font-size:13px;padding:8px 12px;min-width:0;flex:1}
-  .se-play-btn{width:100%;justify-content:center;padding:11px}
-  .se-picker-row > div{width:100%}
-  .se-ep-info{font-size:11.5px}
-
-  /* ── PLAYER ── */
-  .player-box{margin:0 14px 24px;border-radius:14px}
-  .player-frame,.player-ph{height:210px}
-  .player-header-bar{padding:12px 16px}
-  .server-note{font-size:11px;padding:8px 16px}
-  .ptab{padding:11px 14px;font-size:11.5px}
-  .pp-btn{width:60px;height:60px}
-  .pp-btn svg{width:20px;height:20px}
-  .pp-title{font-size:16px;padding:0 24px}
-  .pp-label{font-size:10px}
-
-  /* ── CAST ── */
-  .cast-section-head{padding:0 14px 12px}
-  .cast-row{padding:0 14px 10px;gap:12px;margin-bottom:28px}
-  .cast-card{width:72px}
-  .cast-av{width:56px;height:56px}
-  .cast-name{font-size:10px}
-  .cast-char{font-size:9px}
-
-  /* ── INFO GRID ── */
-  .info-grid{grid-template-columns:1fr;margin:0 14px 28px;gap:12px}
-  .info-block{padding:16px}
-  .ir{font-size:12.5px;padding:7px 0}
-
-  /* ── FOOTER ── */
-  .footer-grid{grid-template-columns:1fr 1fr;gap:20px}
-  footer{padding:32px 18px 20px}
-  .footer-bottom{flex-direction:column;gap:6px;text-align:center}
+  #nav{padding:0 18px}.nav-links{display:none}.hero{height:75vh}.hero-content{padding:0 20px 48px}.hero-title{font-size:34px;letter-spacing:-.8px}
+  .section,.page-header,.filter-row{padding-left:18px;padding-right:18px}.gtabs{padding-left:18px}
+  .welcome-banner{margin:20px 18px 36px;padding:18px 20px;flex-direction:column;gap:14px}
+  .detail-wrap{padding:0 18px 44px;margin-top:-200px}.detail-top{flex-direction:column;gap:20px;align-items:flex-start}
+  .detail-poster{width:130px;height:195px}.detail-info .det-title{font-size:30px;letter-spacing:-.8px}
+  .player-box{margin:0 18px 28px}.player-frame,.player-ph{height:240px}
+  .cast-row,.cast-section-head{padding-left:18px;padding-right:18px}
+  .info-grid{grid-template-columns:1fr;margin:0 18px 28px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:24px}footer{padding:36px 22px 24px}.hero-dots{right:20px}
+  .card{width:148px}.grid{grid-template-columns:repeat(auto-fill,minmax(148px,1fr))}
 }
-
-/* ── BOTTOM NAV (mobile only) ── */
-#bottom-nav{
-  display:none;position:fixed;bottom:0;left:0;right:0;z-index:500;
-  background:rgba(10,10,15,.97);backdrop-filter:blur(24px);
-  border-top:1px solid var(--border);
-  height:60px;align-items:stretch;justify-content:space-around;
-  padding:0 4px;
-}
-.bnav-item{
-  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:3px;cursor:pointer;padding:6px 4px;border-radius:10px;transition:.2s;
-  color:var(--muted);border:none;background:none;font-family:'Outfit',sans-serif;
-}
-.bnav-item.active{color:var(--accent)}
-.bnav-item:active{background:rgba(255,255,255,.06)}
-.bnav-icon{font-size:18px;line-height:1}
-.bnav-label{font-size:9.5px;font-weight:600;letter-spacing:.3px;text-transform:uppercase}
 </style>
 </head>
 <body>
@@ -475,7 +356,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
     <span class="nav-link active" id="nl-home" onclick="goPage('home')">Home</span>
     <span class="nav-link" id="nl-movies" onclick="goPage('movies')">Movies</span>
     <span class="nav-link" id="nl-tv" onclick="goPage('tv')">TV Shows</span>
-    <span class="nav-link" id="nl-bollywood" onclick="goPage('bollywood')">Bollywood</span>
+    <span class="nav-link" id="nl-bollywood" onclick="goPage('bollywood')" style="color:var(--gold)">🎭 Bollywood</span>
     <span class="nav-link" id="nl-watchlist" onclick="goPage('watchlist')">Watchlist</span>
   </div>
   <div class="nav-right">
@@ -507,8 +388,8 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
     <div class="section"><div class="sec-head"><div class="sec-title">Popular Movies</div><span class="sec-more" onclick="goPage('movies','popular')">See All</span></div><div class="row" id="row-popular"></div></div>
     <div class="section"><div class="sec-head"><div class="sec-title">Top Rated</div><span class="sec-more" onclick="goPage('movies','top_rated')">See All</span></div><div class="row" id="row-toprated"></div></div>
     <div class="section"><div class="sec-head"><div class="sec-title">Popular TV Shows</div><span class="sec-more" onclick="goPage('tv')">See All</span></div><div class="row" id="row-tv"></div></div>
-    <div class="section"><div class="sec-head"><div class="sec-title">🎭 Bollywood Hits</div><span class="sec-more" onclick="goPage('bollywood')">See All</span></div><div class="row" id="row-bollywood"></div></div>
     <div class="section"><div class="sec-head"><div class="sec-title">Now Playing</div><span class="sec-more" onclick="goPage('movies','now_playing')">See All</span></div><div class="row" id="row-nowplaying"></div></div>
+    <div class="section"><div class="sec-head"><div class="sec-title" style="color:var(--gold)">🎭 Bollywood Hits</div><span class="sec-more" onclick="goPage('bollywood')" style="border-color:rgba(249,199,79,.3);color:var(--gold)">See All</span></div><div class="row" id="row-bollywood"></div></div>
   </div>
   <div class="page" id="page-movies">
     <div class="page-header"><h1 id="movies-title">Movies</h1></div>
@@ -520,6 +401,11 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
     <div class="gtabs" id="gtabs-tv"></div>
     <div class="section"><div class="grid" id="tv-grid"></div><div style="text-align:center;margin-top:36px"><button class="btn-secondary" id="more-tv-btn" onclick="moreTV()" style="display:none;margin:auto">Load More</button></div></div>
   </div>
+  <div class="page" id="page-bollywood">
+    <div class="page-header"><h1 style="color:var(--gold)">🎭 Bollywood</h1><p>Hindi cinema — the best of Bollywood, all in one place</p></div>
+    <div class="gtabs" id="gtabs-bollywood"></div>
+    <div class="section"><div class="grid" id="bollywood-grid"></div><div style="text-align:center;margin-top:36px"><button class="btn-secondary" id="more-bollywood-btn" onclick="moreBollywood()" style="display:none;margin:auto">Load More</button></div></div>
+  </div>
   <div class="page" id="page-search">
     <div class="page-header"><h1 id="search-title">Search</h1><p id="search-sub">Type something above</p></div>
     <div class="filter-row">
@@ -528,16 +414,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
       <button class="filt" id="sf-tv" onclick="setFilter('tv')">TV Shows</button>
     </div>
     <div class="section"><div class="grid" id="search-grid"></div></div>
-  </div>
-  <div class="page" id="page-bollywood">
-    <div class="page-header"><h1>🎭 Bollywood</h1><p>Hindi cinema — blockbusters, classics &amp; new releases</p></div>
-    <div class="filter-row" id="bollywood-filters">
-      <button class="filt active" id="bf-popular" onclick="setBollywoodFilter('popular',this)">Popular</button>
-      <button class="filt" id="bf-top_rated" onclick="setBollywoodFilter('top_rated',this)">Top Rated</button>
-      <button class="filt" id="bf-upcoming" onclick="setBollywoodFilter('upcoming',this)">Upcoming</button>
-      <button class="filt" id="bf-now_playing" onclick="setBollywoodFilter('now_playing',this)">Now Playing</button>
-    </div>
-    <div class="section"><div class="grid" id="bollywood-grid"></div><div style="text-align:center;margin-top:36px"><button class="btn-secondary" id="more-bollywood-btn" onclick="moreBollywood()" style="display:none;margin:auto">Load More</button></div></div>
   </div>
   <div class="page" id="page-detail"><div id="detail-inner"></div></div>
   <div class="page" id="page-watchlist">
@@ -570,24 +446,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
 </footer>
 
 <div class="toast" id="toast"></div>
-
-<div id="bottom-nav">
-  <button class="bnav-item active" id="bn-home" onclick="goPage('home');setBNav('home')">
-    <span class="bnav-icon">🏠</span><span class="bnav-label">Home</span>
-  </button>
-  <button class="bnav-item" id="bn-movies" onclick="goPage('movies');setBNav('movies')">
-    <span class="bnav-icon">🎬</span><span class="bnav-label">Movies</span>
-  </button>
-  <button class="bnav-item" id="bn-tv" onclick="goPage('tv');setBNav('tv')">
-    <span class="bnav-icon">📺</span><span class="bnav-label">TV</span>
-  </button>
-  <button class="bnav-item" id="bn-bollywood" onclick="goPage('bollywood');setBNav('bollywood')">
-    <span class="bnav-icon">🎭</span><span class="bnav-label">Bollywood</span>
-  </button>
-  <button class="bnav-item" id="bn-watchlist" onclick="goPage('watchlist');setBNav('watchlist')">
-    <span class="bnav-icon">♥</span><span class="bnav-label">Saved</span>
-  </button>
-</div>
 
 <script>
 const IMG = 'https://image.tmdb.org/t/p/';
@@ -638,9 +496,10 @@ async function init() {
 }
 
 async function loadHome() {
-  const [trending, popular, topRated, tv, nowPlaying] = await Promise.all([
+  const [trending, popular, topRated, tv, nowPlaying, bollywood] = await Promise.all([
     tmdb('/trending/movie/week'), tmdb('/movie/popular'), tmdb('/movie/top_rated'),
-    tmdb('/tv/popular'), tmdb('/movie/now_playing')
+    tmdb('/tv/popular'), tmdb('/movie/now_playing'),
+    tmdb('/discover/movie', {with_original_language:'hi', sort_by:'popularity.desc'})
   ]);
   buildHero(trending.results.slice(0, 6));
   fillRow('row-trending', trending.results, 'movie');
@@ -648,8 +507,7 @@ async function loadHome() {
   fillRow('row-toprated', topRated.results, 'movie');
   fillRow('row-tv', tv.results, 'tv');
   fillRow('row-nowplaying', nowPlaying.results, 'movie');
-  // Load Bollywood row
-  loadBollywoodRow();
+  fillRow('row-bollywood', bollywood.results, 'movie');
 }
 
 function buildHero(items) {
@@ -769,30 +627,6 @@ function filterTV(genre, el) {
   el.classList.add('active'); loadTV(genre, 1);
 }
 
-// ── BOLLYWOOD ──
-let bollywoodPage = 1, bollywoodSubtype = 'popular';
-async function loadBollywoodRow() {
-  const data = await tmdb('/discover/movie', {with_original_language: 'hi', sort_by: 'popularity.desc', page: 1});
-  fillRow('row-bollywood', data.results, 'movie');
-}
-async function loadBollywood(subtype = 'popular', page = 1) {
-  bollywoodSubtype = subtype; bollywoodPage = page;
-  if (page === 1) document.getElementById('bollywood-grid').innerHTML = '<div class="spinner-wrap"><div class="spin"></div> Loading…</div>';
-  const sortMap = {popular:'popularity.desc', top_rated:'vote_average.desc', upcoming:'release_date.desc', now_playing:'primary_release_date.desc'};
-  const sort = sortMap[subtype] || 'popularity.desc';
-  const extraParams = subtype === 'top_rated' ? {vote_count_gte: 100} : {};
-  const data = await tmdb('/discover/movie', {with_original_language: 'hi', sort_by: sort, page, ...extraParams});
-  if (page === 1) fillGrid('bollywood-grid', data.results, 'movie');
-  else appendGrid('bollywood-grid', data.results, 'movie');
-  const btn = document.getElementById('more-bollywood-btn');
-  btn.style.display = data.page < data.total_pages ? 'inline-flex' : 'none';
-}
-function moreBollywood() { loadBollywood(bollywoodSubtype, ++bollywoodPage); }
-function setBollywoodFilter(type, el) {
-  document.querySelectorAll('#bollywood-filters .filt').forEach(t => t.classList.remove('active'));
-  el.classList.add('active'); loadBollywood(type, 1);
-}
-
 function buildGenreTabs(elId, genres, type) {
   const el = document.getElementById(elId);
   const allTab = document.createElement('span');
@@ -855,6 +689,28 @@ async function openDetail(id, type = 'movie') {
   renderDetail(detail, credits, similar, videos, type);
 }
 
+function buildServers(type, id, season, episode) {
+  const _t = type === 'tv' ? 'tv' : 'movie';
+  if (type === 'tv') {
+    const s = season || 1, e = episode || 1;
+    return [
+      {label:'✓ MoviesAPI',  url:`https://moviesapi.club/tv/${id}/${s}/${e}`},
+      {label:'✓ 111Movies',  url:`https://111movies.com/tv/${id}/${s}/${e}`},
+      {label:'✓ Cinezo',     url:`https://player.cinezo.live/embed/tv/${id}?season=${s}&episode=${e}&autoplay=true`},
+      {label:'✓ 2Embed',     url:`https://www.2embed.cc/embedtv/${id}&s=${s}&e=${e}`},
+      {label:'✓ VidFast',    url:`https://vidfast.pro/tv/${id}/${s}/${e}`},
+      {label:'✓ VidSrc',     url:`https://vidsrc.me/embed/tv/${id}/${s}-${e}`},
+    ];
+  }
+  return [
+    {label:'✓ MoviesAPI',  url:`https://moviesapi.club/movie/${id}`},
+    {label:'✓ 111Movies',  url:`https://111movies.com/movie/${id}`},
+    {label:'✓ Cinezo',     url:`https://player.cinezo.live/embed/movie/${id}?autoplay=true&poster=true`},
+    {label:'✓ 2Embed',     url:`https://www.2embed.cc/embed/movie/${id}`},
+    {label:'✓ VidFast',    url:`https://vidfast.pro/movie/${id}`},
+    {label:'✓ VidSrc',     url:`https://vidsrc.me/embed/movie/${id}`},
+  ];
+}
 function renderDetail(m, credits, similar, videos, type) {
   const title = m.title || m.name || '';
   const year = (m.release_date || m.first_air_date || '').slice(0,4);
@@ -864,72 +720,12 @@ function renderDetail(m, credits, similar, videos, type) {
   const cast = (credits.cast||[]).slice(0,18);
   const saved = inWL(m.id);
   const trailer = (videos.results||[]).find(v => v.type==='Trailer' && v.site==='YouTube');
+  const seasons = type === 'tv' ? (m.seasons || []).filter(s => s.season_number > 0) : [];
 
-  // Default season/episode
-  window._currentSeason = 1;
-  window._currentEpisode = 1;
-  window._tvId = m.id;
-  window._tvSeasons = type === 'tv' ? (m.seasons || []).filter(s => s.season_number > 0) : [];
-
-  // Build server URLs — for TV these will be updated dynamically
-  function buildServers(season, episode) {
-    const s = season, e = episode, id = m.id;
-    if (type === 'tv') {
-      return [
-        {label:'MoviesAPI',    url:`https://moviesapi.club/tv/${id}-${s}-${e}`,                                         ok:true},
-        {label:'111Movies',    url:`https://111movies.com/tv/${id}?season=${s}&episode=${e}`,                            ok:true},
-        {label:'VidLink',      url:`https://vidlink.pro/tv/${id}/${s}/${e}`,                                             ok:true},
-        {label:'VidSrc.fyi',   url:`https://vidsrc.fyi/embed/tv/${id}/${s}/${e}`,                                       ok:true},
-        {label:'VidSrc.me',    url:`https://vidsrc-embed.ru/embed/tv?tmdb=${id}&season=${s}&episode=${e}`,              ok:true},
-        {label:'2Embed',       url:`https://www.2embed.cc/embedtv/${id}&s=${s}&e=${e}`,                                  ok:true},
-        {label:'SuperEmbed',   url:`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1&s=${s}&e=${e}`,        ok:true},
-        {label:'AutoEmbed',    url:`https://autoembed.co/embed/tv/${id}/${s}/${e}`,                                      ok:false},
-        {label:'EmbedSu',      url:`https://embed.su/embed/tv/${id}/${s}/${e}`,                                          ok:false},
-        {label:'SmashyStream', url:`https://player.smashy.stream/tv?id=${id}&s=${s}&e=${e}`,                            ok:false},
-      ];
-    } else {
-      return [
-        {label:'MoviesAPI',    url:`https://moviesapi.club/movie/${id}`,                                                ok:true},
-        {label:'111Movies',    url:`https://111movies.com/movie/${id}`,                                                 ok:true},
-        {label:'VidLink',      url:`https://vidlink.pro/movie/${id}`,                                                   ok:true},
-        {label:'VidSrc.fyi',   url:`https://vidsrc.fyi/embed/movie/${id}`,                                             ok:true},
-        {label:'VidSrc.me',    url:`https://vidsrc-embed.ru/embed/movie?tmdb=${id}`,                                   ok:true},
-        {label:'2Embed',       url:`https://www.2embed.cc/embed/${id}`,                                                 ok:true},
-        {label:'SuperEmbed',   url:`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`,                     ok:true},
-        {label:'VidFast',      url:`https://vidfast.pro/player.php?tmdb=${id}&type=movie`,                              ok:false},
-        {label:'AutoEmbed',    url:`https://autoembed.co/embed/movie/${id}`,                                            ok:false},
-        {label:'EmbedSu',      url:`https://embed.su/embed/movie/${id}`,                                                ok:false},
-        {label:'SmashyStream', url:`https://player.smashy.stream/movie?id=${id}`,                                      ok:false},
-      ];
-    }
-  }
-  window._buildServers = buildServers;
-  window._servers = buildServers(1, 1);
-
-  // Season/episode picker HTML (only for TV)
-  const seasons = window._tvSeasons;
-  let sePickerHTML = '';
-  if (type === 'tv' && seasons.length) {
-    const seasonOptions = seasons.map(s => `<option value="${s.season_number}">Season ${s.season_number} (${s.episode_count} eps)</option>`).join('');
-    sePickerHTML = `
-    <div class="se-picker">
-      <div class="se-picker-row">
-        <span class="se-label">Choose Episode</span>
-        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-          <select class="se-select" id="season-select" onchange="onSeasonChange(this.value)">
-            ${seasonOptions}
-          </select>
-          <select class="se-select" id="episode-select" onchange="window._currentEpisode=parseInt(this.value)">
-            ${Array.from({length: seasons[0]?.episode_count || 10}, (_,i) => `<option value="${i+1}">Episode ${i+1}</option>`).join('')}
-          </select>
-          <button class="se-play-btn" onclick="playSelectedEpisode()">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg>Play
-          </button>
-        </div>
-      </div>
-      <div class="se-ep-info" id="se-ep-info">Select a season and episode above, then click <strong>Play</strong> to start streaming.</div>
-    </div>`;
-  }
+  // Store current show info for episode switching
+  window._currentShow = type === 'tv' ? {id: m.id, type, season: 1, episode: 1} : null;
+  const servers = buildServers(type, m.id, 1, 1);
+  window._servers = servers;
 
   document.getElementById('detail-inner').innerHTML = `
     <div class="backdrop-wrap">
@@ -957,7 +753,7 @@ function renderDetail(m, credits, similar, videos, type) {
           <div class="genre-tags">${genres}</div>
           <p class="det-overview">${m.overview || 'No description available.'}</p>
           <div class="hero-btns">
-            <button class="btn-primary" onclick="${type==='tv' ? 'playSelectedEpisode()' : 'playServer(0)'}">
+            <button class="btn-primary" onclick="playServer(0)">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg>Watch Now
             </button>
             ${trailer ? `<button class="btn-secondary" onclick="playTrailer('${trailer.key}')">
@@ -969,18 +765,37 @@ function renderDetail(m, credits, similar, videos, type) {
         </div>
       </div>
     </div>
-    ${sePickerHTML}
     <div class="player-box">
-      <div class="player-header-bar"><span class="player-header-title">Stream Player</span><span style="font-size:11px;color:var(--muted);letter-spacing:1px">${type==='tv'?'SELECT SEASON & EPISODE ABOVE':''}</span></div>
-      <div class="server-note">✅ <strong>MoviesAPI · 111Movies · VidLink · VidSrc.fyi · VidSrc.me · 2Embed · SuperEmbed</strong> confirmed working. If one fails, click the next tab.</div>
+      <div class="player-header-bar"><span class="player-header-title">Stream Player</span></div>
+      ${type === 'tv' && seasons.length ? `
+      <div style="padding:14px 22px;border-bottom:1px solid var(--border);background:rgba(0,212,170,.03)">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+          <span style="font-size:12px;font-weight:700;color:var(--muted);letter-spacing:2px;text-transform:uppercase">Season</span>
+          <div id="season-tabs" style="display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px">
+            ${seasons.map(s => `<button onclick="selectSeason(${s.season_number})" id="stab-${s.season_number}"
+              style="flex-shrink:0;background:${s.season_number===1?'rgba(0,212,170,.18)':'rgba(255,255,255,.06)'};border:1px solid ${s.season_number===1?'rgba(0,212,170,.5)':'var(--border)'};color:${s.season_number===1?'var(--accent)':'var(--muted)'};padding:6px 16px;border-radius:50px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:.2s">
+              S${s.season_number}
+            </button>`).join('')}
+          </div>
+          <span style="font-size:12px;font-weight:700;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-left:8px">Episode</span>
+          <div id="episode-tabs" style="display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;max-width:420px">
+            ${Array.from({length: seasons[0]?.episode_count || 10}, (_,i) => i+1).map(ep => `<button onclick="selectEpisode(${ep})" id="etab-${ep}"
+              style="flex-shrink:0;background:${ep===1?'rgba(0,212,170,.18)':'rgba(255,255,255,.06)'};border:1px solid ${ep===1?'rgba(0,212,170,.5)':'var(--border)'};color:${ep===1?'var(--accent)':'var(--muted)'};padding:6px 14px;border-radius:50px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:.2s">
+              E${ep}
+            </button>`).join('')}
+          </div>
+        </div>
+        <div id="ep-label" style="font-size:12px;color:var(--accent);margin-top:10px;font-weight:600">▶ Season 1 · Episode 1</div>
+      </div>` : ''}
+      <div class="server-note">✅ All 6 servers — <strong>MoviesAPI · 111Movies · Cinezo · 2Embed · VidFast · VidSrc</strong>. If one fails, hit ⟳ Next.</div>
       <div class="player-tabs" id="ptabs">
-        ${window._servers.map((s,i) => `<div class="ptab${i===0?' active':''}${s.ok?' working':''}" onclick="playServer(${i})">${s.ok?'✓ ':''}${s.label}</div>`).join('')}
+        ${servers.map((s,i) => `<div class="ptab${i===0?' active':''} working" onclick="playServer(${i})">${s.label}</div>`).join('')}
       </div>
       <div id="player-area">
-        <div class="player-ph" onclick="${type==='tv' ? 'playSelectedEpisode()' : 'playServer(0)'}">
+        <div class="player-ph" onclick="playServer(0)">
           <div class="pp-btn"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21"/></svg></div>
           <div class="pp-title">${esc(title)}</div>
-          <div class="pp-label">${type==='tv' ? 'Choose Season & Episode above, then Play' : 'Click to Start Streaming'}</div>
+          <div class="pp-label">Click to Start Streaming</div>
         </div>
       </div>
     </div>
@@ -1023,49 +838,61 @@ function renderDetail(m, credits, similar, videos, type) {
   if ((similar.results||[]).length) fillRow('similar-row', similar.results, type);
 }
 
-// Season change — update episode dropdown
-async function onSeasonChange(seasonNum) {
-  window._currentSeason = parseInt(seasonNum);
-  window._currentEpisode = 1;
-  const infoEl = document.getElementById('se-ep-info');
-  if (infoEl) infoEl.textContent = 'Loading episodes…';
-  // Fetch season details from TMDB for accurate episode count
-  const data = await tmdb(`/tv/${window._tvId}/season/${seasonNum}`);
-  const epCount = (data.episodes || []).length || 10;
-  const epSel = document.getElementById('episode-select');
-  if (epSel) {
-    epSel.innerHTML = Array.from({length: epCount}, (_,i) => `<option value="${i+1}">Episode ${i+1}</option>`).join('');
-  }
-  if (infoEl) infoEl.innerHTML = `<strong>Season ${seasonNum}</strong> — ${epCount} episodes. Select an episode and click <strong>Play</strong>.`;
-}
-
-function playSelectedEpisode() {
-  const s = window._currentSeason || 1;
-  const eSel = document.getElementById('episode-select');
-  const e = eSel ? parseInt(eSel.value) : (window._currentEpisode || 1);
-  window._currentEpisode = e;
-  window._servers = window._buildServers(s, e);
-  // Update tab labels
-  const ptabs = document.getElementById('ptabs');
-  if (ptabs) {
-    ptabs.innerHTML = window._servers.map((sv,i) => `<div class="ptab${i===0?' active':''}${sv.ok?' working':''}" onclick="playServer(${i})">${sv.ok?'✓ ':''}${sv.label}</div>`).join('');
-  }
-  const infoEl = document.getElementById('se-ep-info');
-  if (infoEl) infoEl.innerHTML = `▶ Playing <strong>Season ${s}, Episode ${e}</strong>. If it doesn't load, try another server tab.`;
-  playServer(0);
-  toast(`▶ S${s}E${e} loading…`, 'red');
-}
-
 function playServer(idx) {
   const s = window._servers?.[idx]; if (!s) return;
+  window._currentServerIdx = idx;
   document.querySelectorAll('.ptab').forEach((t,i) => t.classList.toggle('active', i===idx));
-  document.getElementById('player-area').innerHTML = `<iframe class="player-frame" src="${s.url}" allowfullscreen allow="autoplay; fullscreen; picture-in-picture; encrypted-media" frameborder="0" scrolling="no" referrerpolicy="no-referrer"></iframe>`;
+  document.getElementById('player-area').innerHTML = `
+    <div id="player-wrap" style="position:relative;width:100%;height:520px;background:#000">
+      <iframe id="active-player" class="player-frame"
+        src="${s.url}"
+        allowfullscreen="true"
+        allow="autoplay; fullscreen; picture-in-picture; encrypted-media; accelerometer; gyroscope"
+        frameborder="0" scrolling="no" referrerpolicy="no-referrer"
+        style="width:100%;height:100%;border:none;display:block;background:#000"></iframe>
+      <div id="player-btns" style="position:absolute;top:10px;right:12px;display:flex;gap:8px;z-index:10">
+        <button onclick="tryNextServer()" style="background:rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.18);color:#fff;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;backdrop-filter:blur(10px);font-family:'Outfit',sans-serif" title="Try next server">⟳ Next</button>
+        <button id="fs-btn" onclick="toggleFullscreen()" style="background:rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.18);color:#fff;padding:6px 13px;border-radius:8px;font-size:15px;cursor:pointer;backdrop-filter:blur(10px)" title="Enter Fullscreen">⛶</button>
+      </div>
+    </div>`;
+  setupFSListeners();
   toast('▶ Stream loading…', 'red');
 }
-
-
+function tryNextServer() {
+  const next = ((window._currentServerIdx || 0) + 1) % (window._servers?.length || 1);
+  playServer(next);
+  document.querySelectorAll('.ptab')[next]?.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  toast('Trying ' + (window._servers[next]?.label || 'next server') + '…', 'green');
+}
+function toggleFullscreen() {
+  const wrap = document.getElementById('player-wrap');
+  if (!wrap) return;
+  const isFS = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement);
+  if (isFS) {
+    (document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || function(){}).call(document);
+  } else {
+    (wrap.requestFullscreen || wrap.webkitRequestFullscreen || wrap.mozRequestFullScreen || wrap.msRequestFullscreen || function(){}).call(wrap);
+  }
+}
+let _fsListenerAdded = false;
+function setupFSListeners() {
+  if (_fsListenerAdded) return;
+  _fsListenerAdded = true;
+  const onFSChange = () => {
+    const btn = document.getElementById('fs-btn');
+    const btns = document.getElementById('player-btns');
+    const isFS = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement);
+    if (btn) { btn.textContent = isFS ? '× Exit' : '⛶'; btn.title = isFS ? 'Exit Fullscreen' : 'Enter Fullscreen'; }
+    if (btns) {
+      btns.style.cssText = isFS
+        ? 'position:fixed;top:14px;right:18px;display:flex;gap:8px;z-index:2147483647'
+        : 'position:absolute;top:10px;right:12px;display:flex;gap:8px;z-index:10';
+    }
+  };
+  ['fullscreenchange','webkitfullscreenchange','mozfullscreenchange','MSFullscreenChange'].forEach(ev => document.addEventListener(ev, onFSChange));
+}
 function playTrailer(key) {
-  document.getElementById('player-area').innerHTML = `<iframe class="player-frame" src="https://www.youtube.com/embed/${key}?autoplay=1" allowfullscreen allow="autoplay" frameborder="0"></iframe>`;
+  document.getElementById('player-area').innerHTML = `<div id="player-wrap" style="position:relative;width:100%;height:520px;background:#000"><iframe id="active-player" class="player-frame" src="https://www.youtube.com/embed/${key}?autoplay=1" allowfullscreen allow="autoplay; fullscreen" frameborder="0" style="width:100%;height:100%;border:none;display:block"></iframe></div>`;
   toast('▶ Playing trailer', 'green');
 }
 
@@ -1094,24 +921,30 @@ function renderWL() {
   });
 }
 
-function setBNav(page) {
-  document.querySelectorAll('.bnav-item').forEach(b => b.classList.remove('active'));
-  const el = document.getElementById('bn-' + page);
-  if (el) el.classList.add('active');
+function stopPlayer() {
+  // Kill iframe completely so audio stops immediately
+  const area = document.getElementById('player-area');
+  if (area) area.innerHTML = '';
+  // Also exit fullscreen if active
+  try {
+    if (document.fullscreenElement || document.webkitFullscreenElement) {
+      (document.exitFullscreen || document.webkitExitFullscreen || function(){}).call(document);
+    }
+  } catch(e) {}
 }
-
 function goPage(page, subtype, genreId) {
+  // Stop player when navigating away from detail (kills audio)
+  if (page !== 'detail') stopPlayer();
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  const target = document.getElementById(`page-${page === 'detail' ? 'detail' : page === 'bollywood' ? 'bollywood' : page}`);
+  const target = document.getElementById(`page-${page === 'detail' ? 'detail' : page}`);
   if (target) target.classList.add('active');
   document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
   const nl = document.getElementById(`nl-${page}`); if (nl) nl.classList.add('active');
-  setBNav(page);
   window.scrollTo(0, 0);
   if (page === 'movies') loadMovies(subtype || 'popular', genreId || null, 1);
   else if (page === 'tv') loadTV(genreId || null, 1);
-  else if (page === 'bollywood') loadBollywood('popular', 1);
   else if (page === 'watchlist') renderWL();
+  else if (page === 'bollywood') { buildBollywoodTabs(); loadBollywood(null, 1); }
 }
 
 function getGenreNames(ids, isMovie = true) {
@@ -1127,6 +960,96 @@ function toast(msg, type = 'green') {
   t.textContent = msg; t.className = `toast ${type} show`;
   clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
 }
+// ── TV EPISODE SELECTOR ──
+async function selectSeason(seasonNum) {
+  const show = window._currentShow; if (!show) return;
+  show.season = seasonNum; show.episode = 1;
+  // Update season tab styles
+  document.querySelectorAll('[id^="stab-"]').forEach(b => {
+    const active = b.id === `stab-${seasonNum}`;
+    b.style.background = active ? 'rgba(0,212,170,.18)' : 'rgba(255,255,255,.06)';
+    b.style.borderColor = active ? 'rgba(0,212,170,.5)' : 'var(--border)';
+    b.style.color = active ? 'var(--accent)' : 'var(--muted)';
+  });
+  // Load episode count for this season from TMDB
+  const seasonData = await tmdb(`/tv/${show.id}/season/${seasonNum}`).catch(() => ({episodes:[]}));
+  const epCount = (seasonData.episodes || []).length || 20;
+  const epContainer = document.getElementById('episode-tabs');
+  if (epContainer) {
+    epContainer.innerHTML = Array.from({length: epCount}, (_,i) => i+1).map(ep =>
+      `<button onclick="selectEpisode(${ep})" id="etab-${ep}"
+        style="flex-shrink:0;background:${ep===1?'rgba(0,212,170,.18)':'rgba(255,255,255,.06)'};border:1px solid ${ep===1?'rgba(0,212,170,.5)':'var(--border)'};color:${ep===1?'var(--accent)':'var(--muted)'};padding:6px 14px;border-radius:50px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:.2s">
+        E${ep}
+      </button>`).join('');
+  }
+  updateEpLabel();
+  refreshPlayerServers();
+}
+function selectEpisode(ep) {
+  const show = window._currentShow; if (!show) return;
+  show.episode = ep;
+  document.querySelectorAll('[id^="etab-"]').forEach(b => {
+    const active = b.id === `etab-${ep}`;
+    b.style.background = active ? 'rgba(0,212,170,.18)' : 'rgba(255,255,255,.06)';
+    b.style.borderColor = active ? 'rgba(0,212,170,.5)' : 'var(--border)';
+    b.style.color = active ? 'var(--accent)' : 'var(--muted)';
+  });
+  updateEpLabel();
+  refreshPlayerServers();
+}
+function updateEpLabel() {
+  const show = window._currentShow; if (!show) return;
+  const lbl = document.getElementById('ep-label');
+  if (lbl) lbl.textContent = `▶ Season ${show.season} · Episode ${show.episode} — click a server tab or Watch Now to play`;
+}
+function refreshPlayerServers() {
+  const show = window._currentShow; if (!show) return;
+  const servers = buildServers(show.type, show.id, show.season, show.episode);
+  window._servers = servers;
+  // Rebuild server tabs
+  const ptabs = document.getElementById('ptabs');
+  if (ptabs) ptabs.innerHTML = servers.map((s,i) => `<div class="ptab working" onclick="playServer(${i})">${s.label}</div>`).join('');
+  // Auto-play if player already active
+  const area = document.getElementById('player-area');
+  if (area && area.querySelector('iframe')) playServer(window._currentServerIdx || 0);
+}
+
+// ── BOLLYWOOD ──
+let bwPage = 1, bwGenre = null;
+const BOLLYWOOD_GENRES = [
+  {id:null, name:'All'}, {id:28, name:'Action'}, {id:35, name:'Comedy'},
+  {id:18, name:'Drama'}, {id:10749, name:'Romance'}, {id:27, name:'Horror'},
+  {id:80, name:'Crime'}, {id:53, name:'Thriller'},
+];
+async function loadBollywood(genre = null, page = 1) {
+  bwGenre = genre; bwPage = page;
+  if (page === 1) document.getElementById('bollywood-grid').innerHTML = '<div class="spinner-wrap"><div class="spin"></div> Loading…</div>';
+  const params = {with_original_language:'hi', sort_by:'popularity.desc', page};
+  if (genre) params.with_genres = genre;
+  const data = await tmdb('/discover/movie', params);
+  if (page === 1) fillGrid('bollywood-grid', data.results, 'movie');
+  else appendGrid('bollywood-grid', data.results, 'movie');
+  const btn = document.getElementById('more-bollywood-btn');
+  if (btn) btn.style.display = data.page < data.total_pages ? 'inline-flex' : 'none';
+}
+function moreBollywood() { loadBollywood(bwGenre, ++bwPage); }
+function filterBollywood(genre, el) {
+  document.querySelectorAll('#gtabs-bollywood .gtab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  loadBollywood(genre, 1);
+}
+function buildBollywoodTabs() {
+  const el = document.getElementById('gtabs-bollywood'); if (!el) return;
+  el.innerHTML = '';
+  BOLLYWOOD_GENRES.forEach((g, i) => {
+    const t = document.createElement('span');
+    t.className = 'gtab' + (i === 0 ? ' active' : '');
+    t.textContent = g.name;
+    t.onclick = () => filterBollywood(g.id, t);
+    el.appendChild(t);
+  });
+}
+
 window.addEventListener('scroll', () => {
   const nav = document.getElementById('nav');
   if (window.scrollY > 40) {
