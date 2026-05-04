@@ -744,30 +744,36 @@ function renderDetail(m, credits, similar, videos, type) {
     const s = season, e = episode, id = m.id;
     if (type === 'tv') {
       return [
-        {label:'MoviesAPI',    url:`https://moviesapi.club/tv/${id}-${s}-${e}`,                                         ok:true},
-        {label:'111Movies',    url:`https://111movies.com/tv/${id}?season=${s}&episode=${e}`,                            ok:true},
-        {label:'VidLink',      url:`https://vidlink.pro/tv/${id}/${s}/${e}`,                                             ok:true},
-        {label:'VidSrc.fyi',   url:`https://vidsrc.fyi/embed/tv/${id}/${s}/${e}`,                                       ok:true},
-        {label:'VidSrc.me',    url:`https://vidsrc-embed.ru/embed/tv?tmdb=${id}&season=${s}&episode=${e}`,              ok:true},
-        {label:'2Embed',       url:`https://www.2embed.cc/embedtv/${id}&s=${s}&e=${e}`,                                  ok:true},
-        {label:'SuperEmbed',   url:`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1&s=${s}&e=${e}`,        ok:true},
-        {label:'AutoEmbed',    url:`https://autoembed.co/embed/tv/${id}/${s}/${e}`,                                      ok:false},
-        {label:'EmbedSu',      url:`https://embed.su/embed/tv/${id}/${s}/${e}`,                                          ok:false},
-        {label:'SmashyStream', url:`https://player.smashy.stream/tv?id=${id}&s=${s}&e=${e}`,                            ok:false},
+        // Cleanest — fewest ads, go here first
+        {label:'✦ VidLink',      url:`https://vidlink.pro/tv/${id}/${s}/${e}?primaryColor=00d4aa&secondaryColor=00b894&iconColor=00d4aa&autoplay=true`,  ok:true},
+        {label:'✦ EmbedSu',      url:`https://embed.su/embed/tv/${id}/${s}/${e}`,                                           ok:true},
+        {label:'✦ VidSrc.cc',    url:`https://vidsrc.cc/v2/embed/tv/${id}/${s}/${e}`,                                       ok:true},
+        {label:'VidSrc.fyi',     url:`https://vidsrc.fyi/embed/tv/${id}/${s}/${e}`,                                         ok:true},
+        {label:'VidSrc.me',      url:`https://vidsrc-embed.ru/embed/tv?tmdb=${id}&season=${s}&episode=${e}`,                ok:true},
+        // More ads — fallback only
+        {label:'MoviesAPI',      url:`https://moviesapi.club/tv/${id}-${s}-${e}`,                                           ok:false},
+        {label:'111Movies',      url:`https://111movies.com/tv/${id}?season=${s}&episode=${e}`,                             ok:false},
+        {label:'2Embed',         url:`https://www.2embed.cc/embedtv/${id}&s=${s}&e=${e}`,                                   ok:false},
+        {label:'SuperEmbed',     url:`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1&s=${s}&e=${e}`,         ok:false},
+        {label:'AutoEmbed',      url:`https://autoembed.co/embed/tv/${id}/${s}/${e}`,                                       ok:false},
+        {label:'SmashyStream',   url:`https://player.smashy.stream/tv?id=${id}&s=${s}&e=${e}`,                             ok:false},
       ];
     } else {
       return [
-        {label:'MoviesAPI',    url:`https://moviesapi.club/movie/${id}`,                                                ok:true},
-        {label:'111Movies',    url:`https://111movies.com/movie/${id}`,                                                 ok:true},
-        {label:'VidLink',      url:`https://vidlink.pro/movie/${id}`,                                                   ok:true},
-        {label:'VidSrc.fyi',   url:`https://vidsrc.fyi/embed/movie/${id}`,                                             ok:true},
-        {label:'VidSrc.me',    url:`https://vidsrc-embed.ru/embed/movie?tmdb=${id}`,                                   ok:true},
-        {label:'2Embed',       url:`https://www.2embed.cc/embed/${id}`,                                                 ok:true},
-        {label:'SuperEmbed',   url:`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`,                     ok:true},
-        {label:'VidFast',      url:`https://vidfast.pro/player.php?tmdb=${id}&type=movie`,                              ok:false},
-        {label:'AutoEmbed',    url:`https://autoembed.co/embed/movie/${id}`,                                            ok:false},
-        {label:'EmbedSu',      url:`https://embed.su/embed/movie/${id}`,                                                ok:false},
-        {label:'SmashyStream', url:`https://player.smashy.stream/movie?id=${id}`,                                      ok:false},
+        // Cleanest — fewest ads, go here first
+        {label:'✦ VidLink',      url:`https://vidlink.pro/movie/${id}?primaryColor=00d4aa&secondaryColor=00b894&iconColor=00d4aa&autoplay=true`,         ok:true},
+        {label:'✦ EmbedSu',      url:`https://embed.su/embed/movie/${id}`,                                                  ok:true},
+        {label:'✦ VidSrc.cc',    url:`https://vidsrc.cc/v2/embed/movie/${id}`,                                              ok:true},
+        {label:'VidSrc.fyi',     url:`https://vidsrc.fyi/embed/movie/${id}`,                                               ok:true},
+        {label:'VidSrc.me',      url:`https://vidsrc-embed.ru/embed/movie?tmdb=${id}`,                                      ok:true},
+        // More ads — fallback only
+        {label:'MoviesAPI',      url:`https://moviesapi.club/movie/${id}`,                                                  ok:false},
+        {label:'111Movies',      url:`https://111movies.com/movie/${id}`,                                                   ok:false},
+        {label:'2Embed',         url:`https://www.2embed.cc/embed/${id}`,                                                   ok:false},
+        {label:'SuperEmbed',     url:`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`,                       ok:false},
+        {label:'VidFast',        url:`https://vidfast.pro/player.php?tmdb=${id}&type=movie`,                                ok:false},
+        {label:'AutoEmbed',      url:`https://autoembed.co/embed/movie/${id}`,                                              ok:false},
+        {label:'SmashyStream',   url:`https://player.smashy.stream/movie?id=${id}`,                                        ok:false},
       ];
     }
   }
@@ -840,7 +846,7 @@ function renderDetail(m, credits, similar, videos, type) {
     ${sePickerHTML}
     <div class="player-box">
       <div class="player-header-bar"><span class="player-header-title">Stream Player</span><span style="font-size:11px;color:var(--muted);letter-spacing:1px">${type==='tv'?'SELECT SEASON & EPISODE ABOVE':''}</span></div>
-      <div class="server-note">✅ <strong>MoviesAPI · 111Movies · VidLink · VidSrc.fyi · VidSrc.me · 2Embed · SuperEmbed</strong> confirmed working. If one fails, click the next tab.</div>
+      <div class="server-note">✦ <strong>VidLink · EmbedSu · VidSrc.cc</strong> are the cleanest (fewest ads) — try these first. If one fails, click the next tab.</div>
       <div class="player-tabs" id="ptabs">
         ${window._servers.map((s,i) => `<div class="ptab${i===0?' active':''}${s.ok?' working':''}" onclick="playServer(${i})">${s.ok?'✓ ':''}${s.label}</div>`).join('')}
       </div>
@@ -931,27 +937,7 @@ function playServer(idx) {
   toast('▶ Stream loading…', 'red');
 }
 
-// ── POPUP BLOCKER ──
-// Override window.open to silently kill ad popups
-(function() {
-  const _open = window.open.bind(window);
-  window.open = function(url, name, specs) {
-    // Allow legitimate YouTube/trailer opens, block everything else
-    if (url && (url.includes('youtube.com') || url.includes('youtu.be'))) {
-      return _open(url, name, specs);
-    }
-    // Silently swallow popup — return a fake window object so scripts don't crash
-    const fake = { focus(){}, blur(){}, close(){}, closed: false, location: { href: '' } };
-    return fake;
-  };
 
-  // Block click-triggered navigation away from the page
-  document.addEventListener('click', function(e) {
-    // If a link inside the player tries to open a new tab, kill it
-    const target = e.target.closest('a[target="_blank"]');
-    if (target && !target.closest('#player-area') === false) return;
-  }, true);
-})();
 function playTrailer(key) {
   document.getElementById('player-area').innerHTML = `<iframe class="player-frame" src="https://www.youtube.com/embed/${key}?autoplay=1" allowfullscreen allow="autoplay" frameborder="0"></iframe>`;
   toast('▶ Playing trailer', 'green');
