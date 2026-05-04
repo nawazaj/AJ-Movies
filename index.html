@@ -508,29 +508,18 @@ const CF_WORKER = 'https://nameless-fire-2b57.disturbop30.workers.dev';
 
 async function tmdb(path, params = {}) {
   const q = new URLSearchParams({ api_key: KEY, language: 'en-US', ...params });
-  const directURL = `https://api.themoviedb.org/3${path}?${q}`;
-  // Try direct first
-  try {
-    const r = await fetch(directURL);
-    if (r.ok) { const d = await r.json(); if (d && !d.status_message) return d; if (d) return d; }
-  } catch(e) {}
-  // Fallback to Cloudflare Worker proxy if set
-  if (CF_WORKER) {
-    try {
-      const r = await fetch(`${CF_WORKER}${path}?${q}`);
-      if (r.ok) return r.json();
-    } catch(e) {}
-  }
-  // Last resort — try two public proxies
-  const proxies = [
-    `https://corsproxy.io/?${encodeURIComponent(directURL)}`,
-    `https://thingproxy.freeboard.io/fetch/${directURL}`,
+  // Always use Cloudflare Worker — bypasses any ISP block on TMDB
+  const urls = [
+    `${CF_WORKER}${path}?${q}`,
+    `https://api.themoviedb.org/3${path}?${q}`,
   ];
-  for (const url of proxies) {
+  for (const url of urls) {
     try {
       const r = await fetch(url);
-      if (r.ok) { const d = await r.json(); if (d) return d; }
-    } catch(e) {}
+      if (!r.ok) continue;
+      const d = await r.json();
+      if (d) return d;
+    } catch(e) { continue; }
   }
   return {};
 }
