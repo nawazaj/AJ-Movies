@@ -502,13 +502,34 @@ async function validateKey() {
   } catch { show('setup-error'); btn.textContent = 'Enter AJ MOVIES →'; btn.disabled = false; }
 }
 
+const PROXIES = [
+  url => url,  // direct first
+  url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+  url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+];
+let activeProxy = parseInt(localStorage.getItem('ajm_proxy') || '0');
+
 async function tmdb(path, params = {}) {
   const q = new URLSearchParams({ api_key: KEY, language: 'en-US', ...params });
-  try {
-    const r = await fetch(`https://api.themoviedb.org/3${path}?${q}`);
-    if (!r.ok) { console.warn('TMDB error', r.status, path); return {}; }
-    return r.json();
-  } catch(e) { console.warn('TMDB fetch failed', path, e); return {}; }
+  const base = `https://api.themoviedb.org/3${path}?${q}`;
+  // Try current proxy first, then fallback through others
+  for (let i = 0; i < PROXIES.length; i++) {
+    const idx = (activeProxy + i) % PROXIES.length;
+    try {
+      const r = await fetch(PROXIES[idx](base));
+      if (!r.ok) continue;
+      const data = await r.json();
+      // status_code 7 = invalid key, other errors; valid responses have results/genres/etc
+      if (data && data.status_code && data.status_code !== 200) continue;
+      if (data) {
+        // This proxy works — remember it
+        if (idx !== activeProxy) { activeProxy = idx; localStorage.setItem('ajm_proxy', idx); }
+        return data;
+      }
+    } catch(e) { /* try next */ }
+  }
+  console.warn('All proxies failed for', path);
+  return {};
 }
 
 async function init() {
